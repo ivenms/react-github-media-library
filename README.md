@@ -16,7 +16,7 @@ A beautiful, production-ready React component for displaying and playing media f
 ## Installation
 
 ```bash
-npm install github-media-library
+npm install react-github-media-library
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ Import and use the `GitHubMediaLibrary` component in your React app:
 
 ```tsx
 import React from 'react';
-import { GitHubMediaLibrary } from 'github-media-library';
+import { GitHubMediaLibrary } from 'react-github-media-library';
 
 function App() {
   return (
@@ -40,8 +40,6 @@ function App() {
     />
   );
 }
-
-export default App;
 ```
 
 ## Repository Structure
@@ -216,4 +214,4 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-If you encounter any issues or have questions, please [open an issue](https://github.com/ivenms/github-media-library/issues) on GitHub.
+If you encounter any issues or have questions, please [open an issue](https://github.com/ivenms/react-github-media-library/issues) on GitHub.

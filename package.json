@@ -1,5 +1,5 @@
 {
-  "name": "github-media-library",
+  "name": "react-github-media-library",
   "version": "1.0.0",
   "description": "A beautiful React component for displaying media files from GitHub repositories",
   "main": "dist/index.js",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivenms/github-media-library.git"
+    "url": "https://github.com/ivenms/react-github-media-library.git"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
