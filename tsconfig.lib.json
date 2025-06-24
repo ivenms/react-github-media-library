@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/index.ts",
+    "src/components/**/*.tsx",
+    "src/hooks/**/*.ts",
+    "src/types/**/*.ts",
+    "src/vite-env.d.ts"
+  ],
+  "exclude": [
+    "src/main.tsx",
+    "src/App.tsx", 
+    "demo",
+    "src/**/*.test.tsx",
+    "src/**/*.test.ts"
+  ]
+}

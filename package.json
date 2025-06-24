@@ -1,6 +1,6 @@
 {
   "name": "react-github-media-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A beautiful React component for displaying media files from GitHub repositories",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --mode lib",
-    "build:pages": "vite build",
+    "build": "tsc --project tsconfig.lib.json && vite build --mode lib",
+    "build:pages": "tsc --project tsconfig.app.json && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "prepublishOnly": "npm run build"
@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/node": "^24.0.3",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
