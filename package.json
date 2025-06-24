@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:lib": "vite build --mode lib",
+    "build": "tsc && vite build --mode lib",
+    "build:pages": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "prepublishOnly": "npm run build:lib"

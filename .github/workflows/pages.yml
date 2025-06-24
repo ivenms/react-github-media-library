@@ -28,7 +28,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build:pages
         env:
           VITE_BASE: /react-github-media-library/
 
