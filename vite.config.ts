@@ -2,11 +2,14 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
+// @ts-ignore
+const base: string = (process.env.VITE_BASE as string) || '/';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   if (mode === 'lib') {
     return {
+      base,
       plugins: [
         react(),
         dts({
@@ -34,6 +37,7 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
+    base,
     plugins: [react()],
     optimizeDeps: {
       exclude: ['lucide-react'],
