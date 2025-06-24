@@ -14,7 +14,7 @@
     "build:pages": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build:lib"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "react",
