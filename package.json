@@ -33,6 +33,7 @@
     "type": "git",
     "url": "https://github.com/ivenms/react-github-media-library.git"
   },
+  "homepage": "https://ivenms.github.io/react-github-media-library/",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

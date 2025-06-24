@@ -1,5 +1,7 @@
 # React GitHub Media Library
 
+[**Live Demo**](https://ivenms.github.io/react-github-media-library/)
+
 A beautiful, production-ready React component for displaying and playing media files from GitHub repositories. Perfect for creating media galleries, content libraries, educational platforms, and more.
 
 ## Features
