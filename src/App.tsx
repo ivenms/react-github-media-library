@@ -17,10 +17,10 @@ function App() {
         </div>
       </header>
       <GitHubMediaLibrary
-        owner="your-username"
-        repo="sample-media-repo"
-        mediaFolderPath="media"
-        thumbnailFolderPath="thumbnails"
+        owner="ivenms"
+        repo="react-github-media-library"
+        mediaFolderPath="demo/media"
+        thumbnailFolderPath="demo/thumbnails"
         theme={theme}
         onMediaSelect={(media) => {
           console.log('Selected media:', media);
