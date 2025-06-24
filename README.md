@@ -22,6 +22,8 @@ npm install react-github-media-library
 ## Usage
 
 > **Note:** This library requires React 16.8+ as a peer dependency.
+>
+> **Important:** This library uses GitHub's public API which has a rate limit of 60 requests per hour per IP address for unauthenticated requests. For more information about GitHub API rate limits, see [GitHub's documentation](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
 
 Import and use the `GitHubMediaLibrary` component in your React app:
 
