@@ -84,9 +84,24 @@ export const useGitHubMedia = ({
 
         setMediaItems(media);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching GitHub media:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch media files');
+      // Custom error handling
+      if (err && typeof err === 'object') {
+        if (err.status === 403 && err.message && err.message.toLowerCase().includes('api rate limit')) {
+          setError('API rate limit exceeded. Please try again later or use a GitHub token.');
+        } else if (err.status === 404) {
+          setError('Repository or folder not found. Please check the repository name and media folder path.');
+        } else if (err.status === 401) {
+          setError('Unauthorized access. Please check your GitHub token permissions.');
+        } else if (err.message) {
+          setError(err.message);
+        } else {
+          setError('Failed to fetch media files.');
+        }
+      } else {
+        setError('Failed to fetch media files.');
+      }
     } finally {
       setLoading(false);
     }

@@ -61,6 +61,21 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
 
   const isDark = theme === 'dark';
 
+  // Helper to map error to user-friendly message
+  const getFriendlyErrorMessage = (error: string | null) => {
+    if (!error) return '';
+    if (error.toLowerCase().includes('rate limit')) {
+      return 'The limit to watch the media library with in last hour has been reached. Please try again later.';
+    }
+    if (error.toLowerCase().includes('not found')) {
+      return 'The specified repository or folder could not be found. Please contact with the administrator.';
+    }
+    if (error.toLowerCase().includes('unauthorized')) {
+      return 'Unauthorized access. Please check your GitHub token permissions.';
+    }
+    return error;
+  };
+
   return (
     <div className={`${className} ${isDark ? 'bg-gray-900 text-white' : 'bg-gray-50'} min-h-screen pb-24`}>
       <main className="max-w-7xl mx-auto px-4 py-8">
@@ -79,7 +94,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
         
         {error && (
           <ErrorMessage 
-            message={error} 
+            message={getFriendlyErrorMessage(error)} 
             onRetry={refetch}
             theme={theme}
           />
@@ -90,6 +105,9 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
             <p className="text-lg">No media files found.</p>
             {searchTerm && (
               <p className="mt-2">Try adjusting your search terms.</p>
+            )}
+            {!searchTerm && (
+              <p className="mt-2">This repository or folder does not contain any supported media files.</p>
             )}
           </div>
         )}
