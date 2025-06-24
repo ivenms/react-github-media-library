@@ -39,4 +39,5 @@ export interface MediaPlayerProps {
   media: MediaItem;
   onClose: () => void;
   autoPlay?: boolean;
+  theme?: 'light' | 'dark';
 }

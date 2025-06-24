@@ -5,10 +5,12 @@ import { MediaPlayerProps } from '../types';
 export const MediaPlayer: React.FC<MediaPlayerProps> = ({ 
   media, 
   onClose, 
-  autoPlay = true 
+  autoPlay = true,
+  theme = 'light'
 }) => {
   const mediaRef = useRef<HTMLAudioElement | HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = React.useState(false);
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -30,40 +32,33 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end">
-      <div className="w-full bg-white border-t shadow-2xl">
-        <div className="flex items-center justify-between p-4 border-b bg-gray-50">
+      <div className={`w-full ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-white'} border-t shadow-2xl`}>
+        <div className={`flex items-center justify-between p-4 border-b ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50'}`}>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-gray-900 truncate">
-              {media.title}
-            </h3>
-            <p className="text-sm text-gray-600 truncate">
-              by {media.author} • {media.category}
-            </p>
+            <h3 className={`text-lg font-semibold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>{media.title}</h3>
+            <p className={`text-sm truncate ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>by {media.author} • {media.category}</p>
           </div>
-          
           <div className="flex items-center gap-2 ml-4">
             <button
               onClick={toggleMute}
-              className="p-2 rounded-full hover:bg-gray-200 transition-colors"
+              className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
               title={isMuted ? 'Unmute' : 'Mute'}
             >
               {isMuted ? (
-                <VolumeX className="w-5 h-5 text-gray-600" />
+                <VolumeX className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
               ) : (
-                <Volume2 className="w-5 h-5 text-gray-600" />
+                <Volume2 className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
               )}
             </button>
-            
             <button
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-gray-200 transition-colors"
+              className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
               title="Close player"
             >
-              <X className="w-5 h-5 text-gray-600" />
+              <X className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
             </button>
           </div>
         </div>
-        
         <div className="p-4">
           {media.mediaType === 'video' ? (
             <video

@@ -114,6 +114,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
           media={currentMedia}
           onClose={() => setCurrentMedia(null)}
           autoPlay={true}
+          theme={theme}
         />
       )}
     </div>
