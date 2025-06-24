@@ -1,6 +1,6 @@
 {
   "name": "react-github-media-library",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A beautiful React component for displaying media files from GitHub repositories",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -10,11 +10,12 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc --project tsconfig.lib.json && vite build --mode lib",
+    "build": "tsc --project tsconfig.lib.json && vite build --mode lib && npm run build:tailwind",
     "build:pages": "tsc --project tsconfig.app.json && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "build:tailwind": "npx tailwindcss -i ./src/index.css -o ./dist/style.css --minify"
   },
   "keywords": [
     "react",

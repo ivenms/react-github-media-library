@@ -30,6 +30,7 @@ Import and use the `GitHubMediaLibrary` component in your React app:
 ```tsx
 import React from 'react';
 import { GitHubMediaLibrary } from 'react-github-media-library';
+import 'react-github-media-library/dist/style.css';
 
 function App() {
   return (
