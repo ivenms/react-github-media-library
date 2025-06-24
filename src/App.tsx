@@ -10,7 +10,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${isDark ? 'bg-gray-900' : 'bg-gray-50'} min-h-screen`}>
       <header className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border-b`}>
         <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
           <div>

@@ -77,7 +77,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
   };
 
   return (
-    <div className={`${className} ${isDark ? 'bg-gray-900 text-white' : 'bg-gray-50'} min-h-screen pb-24`}>
+    <div className={`${className} ${isDark ? 'text-white' : 'text-gray-900'} min-h-screen pb-24`}>
       <main className="max-w-7xl mx-auto px-4 py-8">
         {(showSearch || showFilter) && !loading && !error && (
           <SearchAndFilter
