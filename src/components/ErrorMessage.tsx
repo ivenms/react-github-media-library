@@ -1,12 +1,7 @@
 import React from 'react';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import { isDarkTheme } from '../utils';
-
-interface ErrorMessageProps {
-  message: string;
-  onRetry?: () => void;
-  theme?: 'light' | 'dark';
-}
+import { ErrorMessageProps } from '../types';
 
 export const ErrorMessage: React.FC<ErrorMessageProps> = ({ 
   message, 

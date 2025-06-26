@@ -1,9 +1,6 @@
 import React from 'react';
 import { isDarkTheme } from '../utils';
-
-interface LoadingSpinnerProps {
-  theme?: 'light' | 'dark';
-}
+import { LoadingSpinnerProps } from '../types';
 
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ theme = 'light' }) => {
   const isDark = isDarkTheme(theme);

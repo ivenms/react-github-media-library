@@ -1,18 +1,10 @@
 import React from 'react';
 import { Play, Music, Video } from 'lucide-react';
-import { MediaItem } from '../types';
+import { MediaCardProps } from '../types';
 import defaultThumbnail from '../assets/default-thumbnail.svg';
 import { formatMediaDate } from '../utils/date';
 import { getCategoryColor, isDarkTheme } from '../utils';
 import { formatFileSizeInMB } from '../utils/file';
-
-interface MediaCardProps {
-  item: MediaItem;
-  onSelect: (item: MediaItem) => void;
-  theme?: 'light' | 'dark';
-  defaultThumbnailUrl?: string;
-  allCategories?: string[];
-}
 
 export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'light', defaultThumbnailUrl, allCategories = [] }) => {
   const isDark = isDarkTheme(theme);

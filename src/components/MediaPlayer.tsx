@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { X, Volume2, VolumeX } from 'lucide-react';
-import { MediaPlayerProps } from '../types';
 import { isDarkTheme } from '../utils';
+import { MediaPlayerProps } from '../types';
 
 export const MediaPlayer: React.FC<MediaPlayerProps> = ({ 
   media, 

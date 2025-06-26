@@ -1,8 +1,11 @@
+import React, { useState } from 'react';
 import { GitHubMediaLibrary } from './components/GitHubMediaLibrary';
-import { useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { Theme } from './types';
+import { CACHE_TTL } from './utils';
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<Theme>('dark');
   const isDark = theme === 'dark';
 
   const toggleTheme = () => {
@@ -39,6 +42,7 @@ function App() {
         mediaFolderPath="demo/media"
         thumbnailFolderPath="demo/thumbnails"
         theme={theme}
+        cacheTtl={CACHE_TTL.FIFTEEN_MINUTES}
         onMediaSelect={(media) => {
           console.log('Selected media:', media);
         }}

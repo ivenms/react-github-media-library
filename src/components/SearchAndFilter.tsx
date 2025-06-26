@@ -1,21 +1,13 @@
 import React from 'react';
 import { Search, Filter } from 'lucide-react';
 import { isDarkTheme } from '../utils';
-
-interface SearchAndFilterProps {
-  searchTerm: string;
-  onSearchChange: (term: string) => void;
-  filter: string;
-  onFilterChange: (filter: string) => void;
-  categories: string[];
-  theme?: 'light' | 'dark';
-}
+import { SearchAndFilterProps } from '../types';
 
 export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
   searchTerm,
   onSearchChange,
-  filter,
-  onFilterChange,
+  selectedCategory,
+  onCategoryChange,
   categories,
   theme = 'light'
 }) => {
@@ -45,8 +37,8 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
           isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'
         }`} />
         <select
-          value={filter}
-          onChange={(e) => onFilterChange(e.target.value)}
+          value={selectedCategory}
+          onChange={(e) => onCategoryChange(e.target.value)}
           className={`rgml-pl-10 rgml-pr-8 rgml-py-3 rgml-rounded-xl rgml-border-2 rgml-transition-all rgml-duration-200 focus:rgml-outline-none focus:rgml-ring-2 focus:rgml-ring-blue-500/20 rgml-min-w-[160px] ${
             isDark 
               ? 'rgml-bg-gray-800 rgml-border-gray-700 rgml-text-white focus:rgml-border-blue-500' 

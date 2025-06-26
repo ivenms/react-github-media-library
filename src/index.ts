@@ -8,5 +8,12 @@ export { useGitHubMedia } from './hooks/useGitHubMedia';
 export type { 
   MediaItem, 
   GitHubMediaLibraryProps, 
-  MediaPlayerProps 
+  MediaPlayerProps,
+  LoadingSpinnerProps,
+  ErrorMessageProps,
+  MediaCardProps,
+  SearchAndFilterProps,
+  Theme,
+  CacheOptions,
+  CacheEntry
 } from './types';

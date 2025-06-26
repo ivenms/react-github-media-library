@@ -22,7 +22,8 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
   onMediaSelect,
   customThumbnailUrl,
   fileNameParser,
-  defaultThumbnailUrl
+  defaultThumbnailUrl,
+  cacheTtl
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
@@ -36,7 +37,8 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
     githubToken,
     fileNameParser,
     customThumbnailUrl,
-    defaultThumbnailUrl
+    defaultThumbnailUrl,
+    cacheTtl
   });
 
   const availableCategories = useMemo(() => {
@@ -68,8 +70,8 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
           <SearchAndFilter
             searchTerm={searchTerm}
             onSearchChange={setSearchTerm}
-            filter={filter}
-            onFilterChange={setFilter}
+            selectedCategory={filter}
+            onCategoryChange={setFilter}
             categories={availableCategories}
             theme={theme}
           />

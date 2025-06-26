@@ -93,6 +93,7 @@ Examples:
 | `className` | `string` | `""` | Additional CSS classes |
 | `onMediaSelect` | `(media: MediaItem) => void` | `undefined` | Callback when media is selected |
 | `defaultThumbnailUrl` | `string` | `undefined` | URL for a fallback thumbnail image if a media thumbnail is missing |
+| `cacheTtl` | `number` | `3600000` (1 hour) | Cache TTL in milliseconds to avoid API rate limits |
 
 ## Advanced Usage
 
@@ -185,6 +186,73 @@ For private repositories or to increase API rate limits, provide a GitHub person
   githubToken="your-github-token"
 />
 ```
+
+## Caching (Optional)
+
+To avoid hitting GitHub API rate limits and improve performance, the library includes built-in caching functionality. The cache stores API responses in both memory and localStorage for persistence across page reloads.
+
+### Basic Caching
+
+```tsx
+import { GitHubMediaLibrary } from 'react-github-media-library';
+import { CACHE_TTL } from 'react-github-media-library';
+
+<GitHubMediaLibrary
+  owner="your-username"
+  repo="your-repo"
+  cacheTtl={CACHE_TTL.THIRTY_MINUTES} // Cache for 30 minutes
+/>
+```
+
+### Available Cache TTL Options
+
+```tsx
+import { CACHE_TTL } from 'react-github-media-library';
+
+// Predefined cache durations
+CACHE_TTL.FIVE_MINUTES     // 5 minutes
+CACHE_TTL.FIFTEEN_MINUTES  // 15 minutes
+CACHE_TTL.THIRTY_MINUTES   // 30 minutes
+CACHE_TTL.ONE_HOUR         // 1 hour (default)
+CACHE_TTL.TWO_HOURS        // 2 hours
+CACHE_TTL.SIX_HOURS        // 6 hours
+CACHE_TTL.TWELVE_HOURS     // 12 hours
+CACHE_TTL.ONE_DAY          // 24 hours
+
+// Custom duration (in milliseconds)
+cacheTtl={45 * 60 * 1000} // 45 minutes
+```
+
+### Cache Management
+
+The library automatically:
+- Checks for cached data before making API calls
+- Stores successful API responses in cache
+- Cleans up expired cache entries
+- Persists cache across browser sessions using localStorage
+
+### Cache Utilities
+
+```tsx
+import { cache, formatTtl } from 'react-github-media-library';
+
+// Get cache statistics
+const stats = cache.getStats();
+console.log(`Memory entries: ${stats.memorySize}, localStorage entries: ${stats.localStorageSize}`);
+
+// Clear all cache
+cache.clear();
+
+// Format TTL for display
+const ttlDisplay = formatTtl(CACHE_TTL.ONE_HOUR); // "1 hour"
+```
+
+### Cache Behavior
+
+- **Cache Key**: Generated based on `owner`, `repo`, and `mediaFolderPath`
+- **Storage**: Both memory (for current session) and localStorage (for persistence)
+- **Expiration**: Automatic cleanup of expired entries
+- **Fallback**: If cache is unavailable, falls back to direct API calls
 
 ## TypeScript Support
 

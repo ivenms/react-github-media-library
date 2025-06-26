@@ -17,4 +17,26 @@ export {
 } from './file';
 
 // Theme utilities
-export { isDarkTheme, getThemeClasses, type Theme } from './theme'; 
+export { isDarkTheme, getThemeClasses } from './theme';
+
+// Cache utilities
+export { 
+  cache, 
+  generateCacheKey, 
+  CACHE_TTL, 
+  formatTtl
+} from './cache';
+
+// Re-export types from types directory
+export type { 
+  Theme, 
+  CacheOptions, 
+  CacheEntry,
+  MediaItem,
+  GitHubMediaLibraryProps,
+  MediaPlayerProps,
+  LoadingSpinnerProps,
+  ErrorMessageProps,
+  MediaCardProps,
+  SearchAndFilterProps
+} from '../types'; 

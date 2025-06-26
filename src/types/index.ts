@@ -34,6 +34,7 @@ export interface GitHubMediaLibraryProps {
     date?: string;
   };
   defaultThumbnailUrl?: string;
+  cacheTtl?: number; // Cache TTL in milliseconds (default: 1 hour)
 }
 
 export interface MediaPlayerProps {
@@ -41,4 +42,47 @@ export interface MediaPlayerProps {
   onClose: () => void;
   autoPlay?: boolean;
   theme?: 'light' | 'dark';
+}
+
+// Cache-related types
+export interface CacheOptions {
+  ttl: number; // Time to live in milliseconds
+  key?: string; // Optional custom cache key
+}
+
+export interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+  ttl: number;
+}
+
+// Theme type
+export type Theme = 'light' | 'dark';
+
+// Component prop interfaces
+export interface LoadingSpinnerProps {
+  theme?: Theme;
+}
+
+export interface ErrorMessageProps {
+  message: string;
+  onRetry?: () => void;
+  theme?: Theme;
+}
+
+export interface MediaCardProps {
+  item: MediaItem;
+  onSelect: (item: MediaItem) => void;
+  theme?: Theme;
+  defaultThumbnailUrl?: string;
+  allCategories?: string[];
+}
+
+export interface SearchAndFilterProps {
+  searchTerm: string;
+  onSearchChange: (term: string) => void;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  categories: string[];
+  theme?: Theme;
 }

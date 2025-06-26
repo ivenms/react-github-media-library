@@ -1,7 +1,4 @@
-/**
- * Theme type definition
- */
-export type Theme = 'light' | 'dark';
+import { Theme } from '../types';
 
 /**
  * Checks if the current theme is dark

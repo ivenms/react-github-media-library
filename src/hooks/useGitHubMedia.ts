@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Octokit } from '@octokit/rest';
 import { MediaItem, GitHubMediaLibraryProps } from '../types';
+import { cache, generateCacheKey } from '../utils';
 
 export const useGitHubMedia = ({
   owner,
@@ -10,8 +11,9 @@ export const useGitHubMedia = ({
   githubToken,
   fileNameParser,
   customThumbnailUrl,
-  defaultThumbnailUrl
-}: Pick<GitHubMediaLibraryProps, 'owner' | 'repo' | 'mediaFolderPath' | 'thumbnailFolderPath' | 'githubToken' | 'fileNameParser' | 'customThumbnailUrl' | 'defaultThumbnailUrl'> & {
+  defaultThumbnailUrl,
+  cacheTtl = 60 * 60 * 1000 // Default 1 hour in milliseconds
+}: Pick<GitHubMediaLibraryProps, 'owner' | 'repo' | 'mediaFolderPath' | 'thumbnailFolderPath' | 'githubToken' | 'fileNameParser' | 'customThumbnailUrl' | 'defaultThumbnailUrl' | 'cacheTtl'> & {
   fileNameParser?: (fileName: string) => { category: string; title: string; author: string; date?: string };
 }) => {
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
@@ -50,6 +52,21 @@ export const useGitHubMedia = ({
     try {
       setLoading(true);
       setError(null);
+
+      // Clean up expired cache entries
+      cache.cleanup();
+
+      // Generate cache key
+      const cacheKey = generateCacheKey(owner, repo, mediaFolderPath);
+      
+      // Check cache first
+      const cachedData = cache.get<MediaItem[]>(cacheKey);
+      if (cachedData) {
+        console.log('Using cached media data');
+        setMediaItems(cachedData);
+        setLoading(false);
+        return;
+      }
 
       const octokit = new Octokit({
         auth: githubToken
@@ -93,6 +110,10 @@ export const useGitHubMedia = ({
             };
           });
 
+        // Cache the results
+        cache.set(cacheKey, media, { ttl: cacheTtl });
+        console.log('Cached media data with TTL:', cacheTtl);
+
         setMediaItems(media);
       }
     } catch (err: any) {
@@ -116,7 +137,7 @@ export const useGitHubMedia = ({
     } finally {
       setLoading(false);
     }
-  }, [owner, repo, mediaFolderPath, thumbnailFolderPath, githubToken, fileNameParser, customThumbnailUrl, defaultThumbnailUrl]);
+  }, [owner, repo, mediaFolderPath, thumbnailFolderPath, githubToken, fileNameParser, customThumbnailUrl, defaultThumbnailUrl, cacheTtl]);
 
   useEffect(() => {
     fetchGitHubMedia();
