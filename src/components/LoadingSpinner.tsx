@@ -1,11 +1,12 @@
 import React from 'react';
+import { isDarkTheme } from '../utils';
 
 interface LoadingSpinnerProps {
   theme?: 'light' | 'dark';
 }
 
 export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ theme = 'light' }) => {
-  const isDark = theme === 'dark';
+  const isDark = isDarkTheme(theme);
 
   return (
     <div className="rgml-flex rgml-items-center rgml-justify-center rgml-py-12">

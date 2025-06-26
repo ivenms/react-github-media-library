@@ -8,7 +8,7 @@ export interface MediaItem {
   thumbnailUrl: string;
   fileName: string;
   size?: number;
-  createdAt?: string;
+  date?: string;
 }
 
 export interface GitHubMediaLibraryProps {
@@ -31,6 +31,7 @@ export interface GitHubMediaLibraryProps {
     category: string;
     title: string;
     author: string;
+    date?: string;
   };
   defaultThumbnailUrl?: string;
 }

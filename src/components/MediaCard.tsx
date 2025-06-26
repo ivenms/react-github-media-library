@@ -2,32 +2,21 @@ import React from 'react';
 import { Play, Music, Video } from 'lucide-react';
 import { MediaItem } from '../types';
 import defaultThumbnail from '../assets/default-thumbnail.svg';
+import { formatMediaDate } from '../utils/date';
+import { getCategoryColor, isDarkTheme } from '../utils';
+import { formatFileSizeInMB } from '../utils/file';
 
 interface MediaCardProps {
   item: MediaItem;
   onSelect: (item: MediaItem) => void;
   theme?: 'light' | 'dark';
   defaultThumbnailUrl?: string;
+  allCategories?: string[];
 }
 
-export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'light', defaultThumbnailUrl }) => {
-  const isDark = theme === 'dark';
+export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'light', defaultThumbnailUrl, allCategories = [] }) => {
+  const isDark = isDarkTheme(theme);
   
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      'Tutorial': 'bg-blue-500',
-      'Presentation': 'bg-purple-500',
-      'Documentary': 'bg-orange-500',
-      'Music': 'bg-indigo-500',
-      'Podcast': 'bg-green-500',
-      'Interview': 'bg-red-500',
-      'Entertainment': 'bg-pink-500',
-      'Educational': 'bg-teal-500',
-      'default': 'bg-gray-500'
-    };
-    return colors[category as keyof typeof colors] || colors.default;
-  };
-
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
     if (defaultThumbnailUrl) {
@@ -70,11 +59,11 @@ export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'l
       
       <div className="rgml-p-5">
         <div className="rgml-flex rgml-items-center rgml-justify-between rgml-mb-3">
-          <span className={`rgml-inline-block rgml-px-3 rgml-py-1 rgml-text-xs rgml-font-medium rgml-text-white rgml-rounded-full ${getCategoryColor(item.category).replace('bg-', 'rgml-bg-')}`}>
+          <span className={`rgml-inline-block rgml-px-3 rgml-py-1 rgml-text-xs rgml-font-medium rgml-text-white rgml-rounded-full ${getCategoryColor(item.category, allCategories)}`}>
             {item.category}
           </span>
           <span className={`rgml-text-xs ${isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'}`}>
-            {new Date().toLocaleDateString()}
+            {formatMediaDate(item.date)}
           </span>
         </div>
         
@@ -90,7 +79,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'l
         
         {item.size && (
           <div className={`rgml-text-xs ${isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'}`}>
-            {(item.size / (1024 * 1024)).toFixed(1)} MB
+            {formatFileSizeInMB(item.size)}
           </div>
         )}
       </div>

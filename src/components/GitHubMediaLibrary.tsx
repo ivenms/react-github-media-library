@@ -6,6 +6,7 @@ import { MediaPlayer } from './MediaPlayer';
 import { SearchAndFilter } from './SearchAndFilter';
 import { LoadingSpinner } from './LoadingSpinner';
 import { ErrorMessage } from './ErrorMessage';
+import { getFriendlyErrorMessage, extractUniqueCategories, isDarkTheme } from '../utils';
 
 export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
   owner,
@@ -40,8 +41,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
 
   const availableCategories = useMemo(() => {
     if (categories) return categories;
-    const uniqueCategories = [...new Set(mediaItems.map(item => item.category))];
-    return uniqueCategories.sort();
+    return extractUniqueCategories(mediaItems);
   }, [mediaItems, categories]);
 
   const filteredItems = useMemo(() => {
@@ -59,22 +59,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
     onMediaSelect?.(media);
   };
 
-  const isDark = theme === 'dark';
-
-  // Helper to map error to user-friendly message
-  const getFriendlyErrorMessage = (error: string | null) => {
-    if (!error) return '';
-    if (error.toLowerCase().includes('rate limit')) {
-      return 'The limit to watch the media library with in last hour has been reached. Please try again later.';
-    }
-    if (error.toLowerCase().includes('not found')) {
-      return 'The specified repository or folder could not be found. Please contact with the administrator.';
-    }
-    if (error.toLowerCase().includes('unauthorized')) {
-      return 'Unauthorized access. Please check your GitHub token permissions.';
-    }
-    return error;
-  };
+  const isDark = isDarkTheme(theme);
 
   return (
     <div className={`${className} ${isDark ? 'rgml-text-white' : 'rgml-text-gray-900'} rgml-min-h-screen rgml-pb-24`}>
@@ -121,6 +106,7 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
                 onSelect={handleMediaSelect}
                 theme={theme}
                 defaultThumbnailUrl={defaultThumbnailUrl}
+                allCategories={availableCategories}
               />
             ))}
           </div>

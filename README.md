@@ -198,6 +198,122 @@ const handleMediaSelect = (media: MediaItem) => {
 };
 ```
 
+## Project Structure & Utilities
+
+This library is built with a modular architecture that separates concerns and promotes reusability. Here's the internal structure and utilities used by the project:
+
+### Project Structure
+
+```
+src/
+├── components/           # React components
+│   ├── GitHubMediaLibrary.tsx    # Main component
+│   ├── MediaCard.tsx             # Individual media item display
+│   ├── MediaPlayer.tsx           # Audio/video player modal
+│   ├── SearchAndFilter.tsx       # Search and filter controls
+│   ├── ErrorMessage.tsx          # Error display component
+│   └── LoadingSpinner.tsx        # Loading indicator
+├── hooks/               # Custom React hooks
+│   └── useGitHubMedia.ts         # GitHub API integration
+├── utils/               # Utility functions
+│   ├── index.ts                 # Main export file
+│   ├── date.ts                  # Date formatting utilities
+│   ├── error.ts                 # Error message processing
+│   ├── category.ts              # Category management
+│   ├── file.ts                  # File-related utilities
+│   └── theme.ts                 # Theme utilities
+├── types/               # TypeScript type definitions
+│   └── index.ts                 # Main type exports
+└── assets/              # Static assets
+    └── default-thumbnail.svg    # Default thumbnail image
+```
+
+### Utility Functions
+
+The library includes several utility functions that handle common operations:
+
+#### 1. Error Message Processing (`utils/error.ts`)
+Converts technical error messages into user-friendly messages:
+```typescript
+import { getFriendlyErrorMessage } from 'react-github-media-library';
+
+const userMessage = getFriendlyErrorMessage('API rate limit exceeded');
+// Returns: "The limit to watch the media library with in last hour has been reached. Please try again later."
+```
+
+#### 2. Category Management (`utils/category.ts`)
+Handles category-related operations:
+```typescript
+import { getCategoryColor, extractUniqueCategories } from 'react-github-media-library';
+
+// Get consistent color for category badges
+const color = getCategoryColor('Tutorial', ['Tutorial', 'Music', 'Podcast']);
+
+// Extract unique categories from media items
+const categories = extractUniqueCategories(mediaItems);
+```
+
+#### 3. File Utilities (`utils/file.ts`)
+File-related helper functions:
+```typescript
+import { formatFileSize, isVideoFile, isAudioFile } from 'react-github-media-library';
+
+// Format file size
+const size = formatFileSize(1048576); // "1.0 MB"
+
+// Check file types
+const isVideo = isVideoFile('video.mp4'); // true
+const isAudio = isAudioFile('audio.mp3'); // true
+```
+
+#### 4. Theme Utilities (`utils/theme.ts`)
+Theme-related helper functions:
+```typescript
+import { isDarkTheme, getThemeClasses } from 'react-github-media-library';
+
+// Check if theme is dark
+const isDark = isDarkTheme('dark'); // true
+
+// Get theme-specific CSS classes
+const classes = getThemeClasses('dark');
+// Returns object with background, text, border classes
+```
+
+#### 5. Date Formatting (`utils/date.ts`)
+Date formatting utilities:
+```typescript
+import { formatMediaDate } from 'react-github-media-library';
+
+// Format date string
+const formatted = formatMediaDate('2025-01-15'); // "15th Jan 25"
+```
+
+### Benefits of This Architecture
+
+- **Modularity**: Each utility has a single responsibility
+- **Reusability**: Functions can be used across multiple components
+- **Maintainability**: Changes to common logic only need to be made in one place
+- **Testability**: Utility functions can be easily unit tested
+- **Type Safety**: Full TypeScript support with proper type definitions
+- **Consistency**: Ensures uniform behavior throughout the application
+
+### Component Architecture
+
+The library follows a component-based architecture where:
+
+- **GitHubMediaLibrary**: Main orchestrator component that manages state and coordinates other components
+- **MediaCard**: Presentational component for individual media items
+- **MediaPlayer**: Modal component for playing audio/video content
+- **SearchAndFilter**: Form controls for search and filtering
+- **ErrorMessage**: Error display with retry functionality
+- **LoadingSpinner**: Loading state indicator
+
+Each component is designed to be:
+- **Focused**: Single responsibility
+- **Reusable**: Can be used independently
+- **Customizable**: Accepts props for customization
+- **Accessible**: Follows accessibility best practices
+
 ## Browser Support
 
 - Chrome (latest)

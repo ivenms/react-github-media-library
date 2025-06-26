@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertCircle, RefreshCw } from 'lucide-react';
+import { isDarkTheme } from '../utils';
 
 interface ErrorMessageProps {
   message: string;
@@ -12,7 +13,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   onRetry, 
   theme = 'light' 
 }) => {
-  const isDark = theme === 'dark';
+  const isDark = isDarkTheme(theme);
 
   return (
     <div className={`rgml-flex rgml-flex-col rgml-items-center rgml-justify-center rgml-py-12 rgml-px-4 rgml-rounded-xl ${

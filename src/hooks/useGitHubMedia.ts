@@ -11,7 +11,9 @@ export const useGitHubMedia = ({
   fileNameParser,
   customThumbnailUrl,
   defaultThumbnailUrl
-}: Pick<GitHubMediaLibraryProps, 'owner' | 'repo' | 'mediaFolderPath' | 'thumbnailFolderPath' | 'githubToken' | 'fileNameParser' | 'customThumbnailUrl' | 'defaultThumbnailUrl'>) => {
+}: Pick<GitHubMediaLibraryProps, 'owner' | 'repo' | 'mediaFolderPath' | 'thumbnailFolderPath' | 'githubToken' | 'fileNameParser' | 'customThumbnailUrl' | 'defaultThumbnailUrl'> & {
+  fileNameParser?: (fileName: string) => { category: string; title: string; author: string; date?: string };
+}) => {
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,19 +22,28 @@ export const useGitHubMedia = ({
     const nameWithoutExt = fileName.replace(/\.(mp4|wav|mp3|m4a|webm|ogg)$/i, '');
     const parts = nameWithoutExt.split('_');
     
+    // Check if the last part is a date in YYYY-MM-DD format
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    let date = 'Unknown';
+    if (parts.length >= 4 && dateRegex.test(parts[parts.length - 1])) {
+      date = parts.pop()!;
+    }
+    
     if (parts.length >= 3) {
       return {
         category: parts[0].replace(/-/g, ' '),
         title: parts[1].replace(/-/g, ' '),
-        author: parts.slice(2).join(' ').replace(/-/g, ' ')
+        author: parts.slice(2).join(' ').replace(/-/g, ' '),
+        date,
       };
     }
     
     return {
       category: 'General',
       title: nameWithoutExt.replace(/-/g, ' '),
-      author: 'Unknown'
-    };
+      author: 'Unknown',
+      date,
+    } as { category: string; title: string; author: string; date: string };
   };
 
   const fetchGitHubMedia = useCallback(async () => {
@@ -57,7 +68,7 @@ export const useGitHubMedia = ({
           .filter((item) => item.type === 'file' && supportedFormats.test(item.name))
           .map((item, index) => {
             const parser = fileNameParser || defaultFileNameParser;
-            const { category, title, author } = parser(item.name);
+            const { category, title, author, date = 'Unknown' } = parser(item.name);
             
             const thumbnailFilename = item.name.replace(supportedFormats, '.jpg');
             let thumbnailUrl = customThumbnailUrl 
@@ -78,7 +89,7 @@ export const useGitHubMedia = ({
               thumbnailUrl,
               fileName: item.name,
               size: item.size,
-              createdAt: new Date().toISOString() // GitHub API doesn't provide creation date for content
+              date,
             };
           });
 

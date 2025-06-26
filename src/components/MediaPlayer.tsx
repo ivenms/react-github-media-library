@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { X, Volume2, VolumeX } from 'lucide-react';
 import { MediaPlayerProps } from '../types';
+import { isDarkTheme } from '../utils';
 
 export const MediaPlayer: React.FC<MediaPlayerProps> = ({ 
   media, 
@@ -10,7 +11,7 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({
 }) => {
   const mediaRef = useRef<HTMLAudioElement | HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = React.useState(false);
-  const isDark = theme === 'dark';
+  const isDark = isDarkTheme(theme);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

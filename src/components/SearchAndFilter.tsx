@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Filter } from 'lucide-react';
+import { isDarkTheme } from '../utils';
 
 interface SearchAndFilterProps {
   searchTerm: string;
@@ -18,7 +19,7 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
   categories,
   theme = 'light'
 }) => {
-  const isDark = theme === 'dark';
+  const isDark = isDarkTheme(theme);
 
   return (
     <div className="rgml-flex rgml-flex-col sm:rgml-flex-row rgml-gap-4 rgml-mb-8">
