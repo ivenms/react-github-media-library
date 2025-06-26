@@ -38,7 +38,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'l
   };
 
   return (
-    <div className={`rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group ${
+    <div className={`rgml-rounded-xl rgml-shadow-lg hover:rgml-shadow-xl rgml-transition-all rgml-duration-300 rgml-overflow-hidden group ${
       isDark ? 'rgml-bg-gray-800 rgml-border rgml-border-gray-700' : 'rgml-bg-white'
     }`}>
       <div className="rgml-relative rgml-overflow-hidden">
