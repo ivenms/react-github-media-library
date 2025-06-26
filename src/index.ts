@@ -5,9 +5,9 @@ export { SearchAndFilter } from './components/SearchAndFilter';
 export { LoadingSpinner } from './components/LoadingSpinner';
 export { ErrorMessage } from './components/ErrorMessage';
 export { useGitHubMedia } from './hooks/useGitHubMedia';
-export type { 
-  MediaItem, 
-  GitHubMediaLibraryProps, 
+export type {
+  MediaItem,
+  GitHubMediaLibraryProps,
   MediaPlayerProps,
   LoadingSpinnerProps,
   ErrorMessageProps,
@@ -15,5 +15,6 @@ export type {
   SearchAndFilterProps,
   Theme,
   CacheOptions,
-  CacheEntry
+  CacheEntry,
 } from './types';
+export { CACHE_TTL } from './utils';
