@@ -1,6 +1,6 @@
 {
   "name": "react-github-media-library",
-  "version": "1.01.0",
+  "version": "1.1.1",
   "description": "A beautiful React component for displaying media files from GitHub repositories",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
