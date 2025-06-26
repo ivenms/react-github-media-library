@@ -39,57 +39,57 @@ export const MediaCard: React.FC<MediaCardProps> = ({ item, onSelect, theme = 'l
 
   return (
     <div className={`rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group ${
-      isDark ? 'bg-gray-800 border border-gray-700' : 'bg-white'
+      isDark ? 'rgml-bg-gray-800 rgml-border rgml-border-gray-700' : 'rgml-bg-white'
     }`}>
-      <div className="relative overflow-hidden">
+      <div className="rgml-relative rgml-overflow-hidden">
         <img 
           src={item.thumbnailUrl} 
           alt={item.title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="rgml-w-full rgml-h-48 rgml-object-cover rgml-transition-transform rgml-duration-300 group-hover:rgml-scale-105"
           onError={handleImageError}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="rgml-absolute rgml-inset-0 rgml-bg-gradient-to-t rgml-from-black/60 rgml-via-transparent rgml-to-transparent rgml-opacity-0 group-hover:rgml-opacity-100 rgml-transition-opacity rgml-duration-300" />
         <button
           onClick={() => onSelect(item)}
-          className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-all duration-300"
+          className="rgml-absolute rgml-inset-0 rgml-flex rgml-items-center rgml-justify-center rgml-bg-black/20 hover:rgml-bg-black/40 rgml-transition-all rgml-duration-300"
         >
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-            <Play className="w-6 h-6 text-gray-800 ml-1" fill="currentColor" />
+          <div className="rgml-bg-white/90 rgml-backdrop-blur-sm rgml-rounded-full rgml-p-4 rgml-transform rgml-scale-90 group-hover:rgml-scale-100 rgml-transition-transform rgml-duration-300">
+            <Play className="rgml-w-6 rgml-h-6 rgml-text-gray-800 rgml-ml-1" fill="currentColor" />
           </div>
         </button>
-        <div className="absolute top-3 right-3">
-          <div className={`p-2 rounded-full ${isDark ? 'bg-gray-900/80' : 'bg-white/80'} backdrop-blur-sm`}>
+        <div className="rgml-absolute rgml-top-3 rgml-right-3">
+          <div className={`rgml-p-2 rgml-rounded-full ${isDark ? 'rgml-bg-gray-900/80' : 'rgml-bg-white/80'} rgml-backdrop-blur-sm`}>
             {item.mediaType === 'video' ? (
-              <Video className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-700'}`} />
+              <Video className={`rgml-w-4 rgml-h-4 ${isDark ? 'rgml-text-white' : 'rgml-text-gray-700'}`} />
             ) : (
-              <Music className={`w-4 h-4 ${isDark ? 'text-white' : 'text-gray-700'}`} />
+              <Music className={`rgml-w-4 rgml-h-4 ${isDark ? 'rgml-text-white' : 'rgml-text-gray-700'}`} />
             )}
           </div>
         </div>
       </div>
       
-      <div className="p-5">
-        <div className="flex items-center justify-between mb-3">
-          <span className={`inline-block px-3 py-1 text-xs font-medium text-white rounded-full ${getCategoryColor(item.category)}`}>
+      <div className="rgml-p-5">
+        <div className="rgml-flex rgml-items-center rgml-justify-between rgml-mb-3">
+          <span className={`rgml-inline-block rgml-px-3 rgml-py-1 rgml-text-xs rgml-font-medium rgml-text-white rgml-rounded-full ${getCategoryColor(item.category).replace('bg-', 'rgml-bg-')}`}>
             {item.category}
           </span>
-          <span className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+          <span className={`rgml-text-xs ${isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'}`}>
             {new Date().toLocaleDateString()}
           </span>
         </div>
         
-        <h3 className={`text-lg font-semibold mb-2 line-clamp-2 ${
-          isDark ? 'text-white' : 'text-gray-900'
+        <h3 className={`rgml-text-lg rgml-font-semibold rgml-mb-2 rgml-line-clamp-2 ${
+          isDark ? 'rgml-text-white' : 'rgml-text-gray-900'
         }`}>
           {item.title}
         </h3>
         
-        <p className={`text-sm mb-3 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+        <p className={`rgml-text-sm rgml-mb-3 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>
           by {item.author}
         </p>
         
         {item.size && (
-          <div className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+          <div className={`rgml-text-xs ${isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'}`}>
             {(item.size / (1024 * 1024)).toFixed(1)} MB
           </div>
         )}

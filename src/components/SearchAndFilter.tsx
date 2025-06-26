@@ -21,35 +21,35 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
   const isDark = theme === 'dark';
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 mb-8">
-      <div className="relative flex-1">
-        <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${
-          isDark ? 'text-gray-400' : 'text-gray-500'
+    <div className="rgml-flex rgml-flex-col sm:rgml-flex-row rgml-gap-4 rgml-mb-8">
+      <div className="rgml-relative rgml-flex-1">
+        <Search className={`rgml-absolute rgml-left-3 rgml-top-1/2 rgml-transform -rgml-translate-y-1/2 rgml-w-5 rgml-h-5 ${
+          isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'
         }`} />
         <input
           type="text"
           placeholder="Search by title or author..."
-          className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
+          className={`rgml-w-full rgml-pl-10 rgml-pr-4 rgml-py-3 rgml-rounded-xl rgml-border-2 rgml-transition-all rgml-duration-200 focus:rgml-outline-none focus:rgml-ring-2 focus:rgml-ring-blue-500/20 ${
             isDark 
-              ? 'bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-blue-500' 
-              : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500 focus:border-blue-500'
+              ? 'rgml-bg-gray-800 rgml-border-gray-700 rgml-text-white rgml-placeholder-gray-400 focus:rgml-border-blue-500' 
+              : 'rgml-bg-white rgml-border-gray-200 rgml-text-gray-900 rgml-placeholder-gray-500 focus:rgml-border-blue-500'
           }`}
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
         />
       </div>
       
-      <div className="relative">
-        <Filter className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${
-          isDark ? 'text-gray-400' : 'text-gray-500'
+      <div className="rgml-relative">
+        <Filter className={`rgml-absolute rgml-left-3 rgml-top-1/2 rgml-transform -rgml-translate-y-1/2 rgml-w-5 rgml-h-5 ${
+          isDark ? 'rgml-text-gray-400' : 'rgml-text-gray-500'
         }`} />
         <select
           value={filter}
           onChange={(e) => onFilterChange(e.target.value)}
-          className={`pl-10 pr-8 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 min-w-[160px] ${
+          className={`rgml-pl-10 rgml-pr-8 rgml-py-3 rgml-rounded-xl rgml-border-2 rgml-transition-all rgml-duration-200 focus:rgml-outline-none focus:rgml-ring-2 focus:rgml-ring-blue-500/20 rgml-min-w-[160px] ${
             isDark 
-              ? 'bg-gray-800 border-gray-700 text-white focus:border-blue-500' 
-              : 'bg-white border-gray-200 text-gray-900 focus:border-blue-500'
+              ? 'rgml-bg-gray-800 rgml-border-gray-700 rgml-text-white focus:rgml-border-blue-500' 
+              : 'rgml-bg-white rgml-border-gray-200 rgml-text-gray-900 focus:rgml-border-blue-500'
           }`}
         >
           <option value="All">All Categories</option>

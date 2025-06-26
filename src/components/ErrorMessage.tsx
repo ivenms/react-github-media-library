@@ -15,22 +15,22 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   const isDark = theme === 'dark';
 
   return (
-    <div className={`flex flex-col items-center justify-center py-12 px-4 rounded-xl ${
-      isDark ? 'bg-gray-800 border border-gray-700' : 'bg-gray-50 border border-gray-200'
+    <div className={`rgml-flex rgml-flex-col rgml-items-center rgml-justify-center rgml-py-12 rgml-px-4 rgml-rounded-xl ${
+      isDark ? 'rgml-bg-gray-800 rgml-border rgml-border-gray-700' : 'rgml-bg-gray-50 rgml-border rgml-border-gray-200'
     }`}>
-      <AlertCircle className={`w-12 h-12 mb-4 ${isDark ? 'text-red-400' : 'text-red-500'}`} />
-      <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+      <AlertCircle className={`rgml-w-12 rgml-h-12 rgml-mb-4 ${isDark ? 'rgml-text-red-400' : 'rgml-text-red-500'}`} />
+      <h3 className={`rgml-text-lg rgml-font-semibold rgml-mb-2 ${isDark ? 'rgml-text-white' : 'rgml-text-gray-900'}`}>
         Failed to Load Media
       </h3>
-      <p className={`text-center mb-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+      <p className={`rgml-text-center rgml-mb-4 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>
         {message}
       </p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+          className="rgml-flex rgml-items-center rgml-gap-2 rgml-px-4 rgml-py-2 rgml-bg-blue-500 hover:rgml-bg-blue-600 rgml-text-white rgml-rounded-lg rgml-transition-colors"
         >
-          <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="rgml-w-4 rgml-h-4" />
           Try Again
         </button>
       )}

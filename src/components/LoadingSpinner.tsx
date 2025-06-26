@@ -8,14 +8,14 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ theme = 'light' 
   const isDark = theme === 'dark';
 
   return (
-    <div className="flex items-center justify-center py-12">
-      <div className="relative">
-        <div className={`w-12 h-12 rounded-full border-4 ${
-          isDark ? 'border-gray-700' : 'border-gray-200'
+    <div className="rgml-flex rgml-items-center rgml-justify-center rgml-py-12">
+      <div className="rgml-relative">
+        <div className={`rgml-w-12 rgml-h-12 rgml-rounded-full rgml-border-4 ${
+          isDark ? 'rgml-border-gray-700' : 'rgml-border-gray-200'
         }`}></div>
-        <div className={`absolute top-0 left-0 w-12 h-12 rounded-full border-4 border-transparent border-t-blue-500 animate-spin`}></div>
+        <div className={`rgml-absolute rgml-top-0 rgml-left-0 rgml-w-12 rgml-h-12 rgml-rounded-full rgml-border-4 rgml-border-transparent rgml-border-t-blue-500 rgml-animate-spin`}></div>
       </div>
-      <span className={`ml-3 text-lg ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+      <span className={`rgml-ml-3 rgml-text-lg ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>
         Loading media files...
       </span>
     </div>

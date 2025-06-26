@@ -77,8 +77,8 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
   };
 
   return (
-    <div className={`${className} ${isDark ? 'text-white' : 'text-gray-900'} min-h-screen pb-24`}>
-      <main className="px-4 py-8">
+    <div className={`${className} ${isDark ? 'rgml-text-white' : 'rgml-text-gray-900'} rgml-min-h-screen rgml-pb-24`}>
+      <main className="rgml-px-4 rgml-py-8">
         {(showSearch || showFilter) && !loading && !error && (
           <SearchAndFilter
             searchTerm={searchTerm}
@@ -101,19 +101,19 @@ export const GitHubMediaLibrary: React.FC<GitHubMediaLibraryProps> = ({
         )}
 
         {!loading && !error && filteredItems.length === 0 && (
-          <div className={`text-center py-12 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-            <p className="text-lg">No media files found.</p>
+          <div className={`rgml-text-center rgml-py-12 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>
+            <p className="rgml-text-lg">No media files found.</p>
             {searchTerm && (
-              <p className="mt-2">Try adjusting your search terms.</p>
+              <p className="rgml-mt-2">Try adjusting your search terms.</p>
             )}
             {!searchTerm && (
-              <p className="mt-2">This repository or folder does not contain any supported media files.</p>
+              <p className="rgml-mt-2">This repository or folder does not contain any supported media files.</p>
             )}
           </div>
         )}
 
         {!loading && !error && filteredItems.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="rgml-grid rgml-grid-cols-1 sm:rgml-grid-cols-2 lg:rgml-grid-cols-3 xl:rgml-grid-cols-4 rgml-gap-6">
             {filteredItems.map(item => (
               <MediaCard
                 key={item.id}

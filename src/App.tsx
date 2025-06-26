@@ -10,24 +10,24 @@ function App() {
   };
 
   return (
-    <div className={`App ${isDark ? 'bg-gray-900' : 'bg-gray-50'} min-h-screen`}>
-      <header className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border-b`}>
-        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+    <div className={`App ${isDark ? 'rgml-bg-gray-900' : 'rgml-bg-gray-50'} rgml-min-h-screen`}>
+      <header className={`${isDark ? 'rgml-bg-gray-800 rgml-border-gray-700' : 'rgml-bg-white'} rgml-shadow-sm rgml-border-b`}>
+        <div className="rgml-max-w-7xl rgml-mx-auto rgml-px-4 rgml-py-6 rgml-flex rgml-justify-between rgml-items-center">
           <div>
-            <h1 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            <h1 className={`rgml-text-3xl rgml-font-bold ${isDark ? 'rgml-text-white' : 'rgml-text-gray-900'}`}>
               Media Library
             </h1>
-            <p className={`text-lg mt-2 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`rgml-text-lg rgml-mt-2 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>
               Browse and play your media collection
             </p>
           </div>
           <button
             onClick={toggleTheme}
-            className={`px-4 py-2 rounded-lg ${
+            className={`rgml-px-4 rgml-py-2 rgml-rounded-lg ${
               isDark 
-                ? 'bg-gray-700 text-white hover:bg-gray-600' 
-                : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-            } transition-colors`}
+                ? 'rgml-bg-gray-700 rgml-text-white hover:rgml-bg-gray-600' 
+                : 'rgml-bg-gray-100 rgml-text-gray-800 hover:rgml-bg-gray-200'
+            } rgml-transition-colors`}
           >
             {isDark ? '🌞 Light' : '🌙 Dark'}
           </button>

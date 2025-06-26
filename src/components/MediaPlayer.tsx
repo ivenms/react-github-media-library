@@ -31,42 +31,42 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end">
-      <div className={`w-full ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-white'} border-t shadow-2xl`}>
-        <div className={`flex items-center justify-between p-4 border-b ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50'}`}>
-          <div className="flex-1 min-w-0">
-            <h3 className={`text-lg font-semibold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>{media.title}</h3>
-            <p className={`text-sm truncate ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>by {media.author} • {media.category}</p>
+    <div className="rgml-fixed rgml-inset-0 rgml-bg-black/80 rgml-backdrop-blur-sm rgml-z-50 rgml-flex rgml-items-end">
+      <div className={`rgml-w-full ${isDark ? 'rgml-bg-gray-900 rgml-border-gray-700' : 'rgml-bg-white'} rgml-border-t rgml-shadow-2xl`}>
+        <div className={`rgml-flex rgml-items-center rgml-justify-between rgml-p-4 rgml-border-b ${isDark ? 'rgml-bg-gray-800 rgml-border-gray-700' : 'rgml-bg-gray-50'}`}>
+          <div className="rgml-flex-1 rgml-min-w-0">
+            <h3 className={`rgml-text-lg rgml-font-semibold rgml-truncate ${isDark ? 'rgml-text-white' : 'rgml-text-gray-900'}`}>{media.title}</h3>
+            <p className={`rgml-text-sm rgml-truncate ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`}>by {media.author} • {media.category}</p>
           </div>
-          <div className="flex items-center gap-2 ml-4">
+          <div className="rgml-flex rgml-items-center rgml-gap-2 rgml-ml-4">
             <button
               onClick={toggleMute}
-              className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
+              className={`rgml-p-2 rgml-rounded-full rgml-transition-colors ${isDark ? 'hover:rgml-bg-gray-700' : 'hover:rgml-bg-gray-200'}`}
               title={isMuted ? 'Unmute' : 'Mute'}
             >
               {isMuted ? (
-                <VolumeX className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
+                <VolumeX className={`rgml-w-5 rgml-h-5 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`} />
               ) : (
-                <Volume2 className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
+                <Volume2 className={`rgml-w-5 rgml-h-5 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`} />
               )}
             </button>
             <button
               onClick={onClose}
-              className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-200'}`}
+              className={`rgml-p-2 rgml-rounded-full rgml-transition-colors ${isDark ? 'hover:rgml-bg-gray-700' : 'hover:rgml-bg-gray-200'}`}
               title="Close player"
             >
-              <X className={`w-5 h-5 ${isDark ? 'text-gray-300' : 'text-gray-600'}`} />
+              <X className={`rgml-w-5 rgml-h-5 ${isDark ? 'rgml-text-gray-300' : 'rgml-text-gray-600'}`} />
             </button>
           </div>
         </div>
-        <div className="p-4">
+        <div className="rgml-p-4">
           {media.mediaType === 'video' ? (
             <video
               ref={mediaRef as React.RefObject<HTMLVideoElement>}
               src={media.mediaUrl}
               controls
               autoPlay={autoPlay}
-              className="w-full max-h-96 rounded-lg"
+              className="rgml-w-full rgml-max-h-96 rgml-rounded-lg"
               onLoadedMetadata={() => {
                 if (mediaRef.current) {
                   setIsMuted(mediaRef.current.muted);
@@ -79,7 +79,7 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({
               src={media.mediaUrl}
               controls
               autoPlay={autoPlay}
-              className="w-full"
+              className="rgml-w-full"
               onLoadedMetadata={() => {
                 if (mediaRef.current) {
                   setIsMuted(mediaRef.current.muted);
