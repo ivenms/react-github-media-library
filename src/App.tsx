@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { GitHubMediaLibrary } from './components/GitHubMediaLibrary';
-import { Sun, Moon } from 'lucide-react';
 import { Theme } from './types';
 import { CACHE_TTL } from './utils';
 
