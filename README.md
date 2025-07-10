@@ -397,6 +397,41 @@ Each component is designed to be:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Publishing to npm
+
+To publish a new version of this package to npm, follow these steps:
+
+1.  **Login to npm**:
+    If you haven't already, log in to your npm account.
+    ```bash
+    npm login
+    ```
+
+2.  **Update Version**:
+    Increment the version number in `package.json`. It's recommended to use the `npm version` command as it also creates a git tag.
+    ```bash
+    # For a patch release (e.g., 1.1.11 -> 1.1.12)
+    npm version patch
+
+    # For a minor release (e.g., 1.1.11 -> 1.2.0)
+    npm version minor
+    ```
+
+3.  **Publish to npm**:
+    The `prepublishOnly` script will automatically build the project before publishing.
+    ```bash
+    npm publish
+    ```
+
+4.  **Push to GitHub**:
+    Push your changes and the new version tag to the repository.
+    ```bash
+    git push && git push --tags
+    ```
+
+5.  **Create a GitHub Release**:
+    Go to the repository's releases page and create a new release from the tag you just pushed.
+
 ## License
 
 MIT License - see the [LICENSE](LICENSE) file for details.
